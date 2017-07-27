@@ -3,8 +3,16 @@
     <!--标签墙的自定义属性-->
     <declare-styleable name="LabelWall">
         <!--标签之间的水平间距-->
-        <attr name="label_horizontal_space" format="dimension|reference"/>
+        <attr name="labelHorizontalSpace" format="dimension|reference"/>
         <!--标签之间的垂直间距-->
-        <attr name="label_vertical_space" format="dimension|reference"/>
+        <attr name="labelVerticalSpace" format="dimension|reference"/>
+        <!--无标签的时候，标签池中显示的文字-->
+        <attr name="emptyMsgText" format="string|reference"/>
+        <!--无标签的时候，标签池中显示的文字大小-->
+        <attr name="emptyMsgTextSize" format="dimension|reference"/>
+        <!--无标签的时候，标签池中显示的文字颜色-->
+        <attr name="emptyMsgTextColor" format="color|reference"/>
+        <!--无标签的时候，标签池中显示的文字是否左上角对齐，默认居中-->
+        <attr name="emptyMsgOnLeftConner" format="boolean"/>
     </declare-styleable>
 </resources>
