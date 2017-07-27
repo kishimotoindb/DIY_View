@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mWall = (LabelWall) findViewById(R.id.wall);
         mLabels = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 100; i++) {
             mLabels.add("小袋鼠嘤嘤嘤" + i);
         }
     }

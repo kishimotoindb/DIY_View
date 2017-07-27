@@ -29,8 +29,8 @@
             bear:emptyMsgText="请添加金额"
             bear:emptyMsgTextColor="@android:color/white"
             bear:emptyMsgTextSize="10dp"
-            bear:labelHorizontalSpace="20dp"
-            bear:labelVerticalSpace="30dp"/>
+            bear:labelHorizontalSpace="1dp"
+            bear:labelVerticalSpace="1dp"/>
 
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

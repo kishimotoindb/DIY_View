@@ -6,6 +6,7 @@ import android.database.DataSetObservable;
 import android.database.DataSetObserver;
 import android.support.annotation.Px;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -175,12 +176,12 @@ public class LabelWall extends ViewGroup {
                         currentRowHeight = currentRowMaxChildHeight;
                     }
                 }
-
-                if (maxWidth == 0) maxWidth = usedWidth;
-                maxWidth = maxWidth + getPaddingLeft() + getPaddingRight();
-                maxHeight = maxHeight + currentRowHeight + getPaddingTop() + getPaddingBottom();
-                if (currentRowHeight != 0) mRowHeights.add(currentRowHeight);
             }
+
+            if (maxWidth == 0) maxWidth = usedWidth;
+            maxWidth = maxWidth + getPaddingLeft() + getPaddingRight();
+            maxHeight = maxHeight + currentRowHeight + getPaddingTop() + getPaddingBottom();
+            if (currentRowHeight != 0) mRowHeights.add(currentRowHeight);
         } else {
             measureChildWithMargins(mEmptyMsg, widthMeasureSpec, getPaddingLeft() + getPaddingRight(),
                     heightMeasureSpec, getPaddingTop() + getPaddingBottom());
