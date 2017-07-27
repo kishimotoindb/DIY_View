@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--标签墙的自定义属性-->
+    <declare-styleable name="LabelWall">
+        <!--标签之间的水平间距-->
+        <attr name="label_horizontal_space" format="dimension|reference"/>
+        <!--标签之间的垂直间距-->
+        <attr name="label_vertical_space" format="dimension|reference"/>
+    </declare-styleable>
+</resources>
