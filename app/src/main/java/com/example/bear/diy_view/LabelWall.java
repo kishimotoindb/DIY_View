@@ -76,8 +76,8 @@ public class LabelWall extends ViewGroup {
         mEmptyMsg = new TextView(getContext());
         mEmptyMsg.setText(ta.getString(R.styleable.LabelWall_emptyMsgText));
         mEmptyMsg.setTextColor(ta.getColor(R.styleable.LabelWall_emptyMsgTextColor, LABLE_EMPTY_MSG_TEXT_COLOR_DEFAULT));
-        float dimension = ta.getDimension(R.styleable.LabelWall_emptyMsgTextSize, LABLE_EMPTY_MSG_TEXT_SIZE_DEFAULT);
-        mEmptyMsg.setTextSize(dimension);
+        float textSize = ta.getDimension(R.styleable.LabelWall_emptyMsgTextSize, LABLE_EMPTY_MSG_TEXT_SIZE_DEFAULT);
+        mEmptyMsg.setTextSize(textSize / context.getResources().getDisplayMetrics().scaledDensity);
         mEmptyMsgOnLeftCorner = ta.getBoolean(R.styleable.LabelWall_emptyMsgOnLeftConner, LABLE_EMPTY_MSG_ON_LEFT_CONNER_DEFAULT);
         ta.recycle();
         mRowHeights = new ArrayList<>();
@@ -254,8 +254,7 @@ public class LabelWall extends ViewGroup {
                 ct = (b - t + getPaddingTop() - getPaddingBottom() - mEmptyMsg.getMeasuredHeight()) / 2;
                 cb = ct + mEmptyMsg.getMeasuredHeight();
             }
-            mEmptyMsg.layout(getPaddingLeft() + cl, getPaddingTop() + ct,
-                    getPaddingLeft() + cr, getPaddingTop() + cb);
+            mEmptyMsg.layout(cl, ct, cr, cb);
         }
     }
 
