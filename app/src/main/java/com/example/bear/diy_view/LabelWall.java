@@ -18,9 +18,22 @@ import java.util.ArrayList;
 /**
  * Created by haichen.cui on 20/07/2017.
  * 标签墙效果
- * <p>
- * 1.空白信息的对齐位置只有两种：1)Gravity.LEFT 左上角 2)其他 正中间。如需增加，请在onLayout()中
+ */
+
+/*
+ * 使用说明：
+ * - 用于展示多个排列整齐的标签，没有标签的时候默认展示空白信息（TextView）。
+ * - 使用时，继承 LabelWall.LabelAdapter 实现新的Adapter，提供数据和布局
+ * - 空白信息的对齐位置只有两种：1)Gravity.LEFT 左上角 2)其他 正中间。如需增加，请在onLayout()中
  * 增加处理代码。
+ *
+ * - 布局中可以设置的属性：
+        - 标签之间的水平间距: name="labelHorizontalSpace" format="dimension|reference"
+        - 标签之间的垂直间距: name="labelVerticalSpace" format="dimension|reference"/
+        - 空白信息文字: name="emptyMsgText" format="string|reference"/
+        - 空白信息文字大小: name="emptyMsgTextSize" format="dimension|reference"/
+        - 空白信息文字颜色: name="emptyMsgTextColor" format="color|reference"/
+        - 空白信息文字是否左上角对齐，默认居中: name="emptyMsgOnLeftConner" format="boolean"/
  */
 
 public class LabelWall extends ViewGroup {
