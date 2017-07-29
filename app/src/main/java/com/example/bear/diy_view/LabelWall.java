@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class LabelWall extends ViewGroup {
     private static final int LABLE_HORIZONTAL_SPACE_DEFAULT = 10;
     private static final int LABLE_VERTICAL_SPACE_DEFAULT = 10;
-    private static final int LABLE_EMPTY_MSG_TEXT_COLOR_DEFAULT = 0x000000;
+    private static final int LABLE_EMPTY_MSG_TEXT_COLOR_DEFAULT = 0xff000000;
     private static final int LABLE_EMPTY_MSG_TEXT_SIZE_DEFAULT = 20;
     private static final boolean LABLE_EMPTY_MSG_ON_LEFT_CONNER_DEFAULT = false;
 
@@ -67,10 +67,17 @@ public class LabelWall extends ViewGroup {
         @Override
         public void onChanged() {
             if (mAdapter != null && mAdapter.getCount() > 0) {
-                for (int i = getChildCount() - 1; i >= mAdapter.getCount(); i--) {
-                    removeViewAt(i);
+                // 从空到新增label的过程，因为adapter先增加数据，然后notifyDataSetChange，
+                // 所以执行这里的时候，emptyMsg仍然在labelWall中，创建Label前需要清空emptyMsg
+                if (getChildCount() == 1 && getChildAt(0) == mEmptyMsg) {
+                    removeAllViews();
+                    init();
+                } else {
+                    for (int i = getChildCount() - 1; i >= mAdapter.getCount(); i--) {
+                        removeViewAt(i);
+                    }
+                    update();
                 }
-                update();
             } else {
                 removeAllViews();
                 addView(mEmptyMsg);
@@ -88,7 +95,7 @@ public class LabelWall extends ViewGroup {
                 R.styleable.LabelWall_labelVerticalSpace, LABLE_VERTICAL_SPACE_DEFAULT);
         mEmptyMsg = new TextView(getContext());
         mEmptyMsg.setText(ta.getString(R.styleable.LabelWall_emptyMsgText));
-        mEmptyMsg.setTextColor(ta.getColor(R.styleable.LabelWall_emptyMsgTextColor, LABLE_EMPTY_MSG_TEXT_COLOR_DEFAULT));
+        mEmptyMsg.setTextColor(ta.getColor(R.styleable.LabelWall_emptyMsgTextColor, LABLE_EMPTY_MSG_TEXT_COLOR_DEFAULT) );
         float textSize = ta.getDimension(R.styleable.LabelWall_emptyMsgTextSize, LABLE_EMPTY_MSG_TEXT_SIZE_DEFAULT);
         mEmptyMsg.setTextSize(textSize / context.getResources().getDisplayMetrics().scaledDensity);
         mEmptyMsgOnLeftCorner = ta.getBoolean(R.styleable.LabelWall_emptyMsgOnLeftConner, LABLE_EMPTY_MSG_ON_LEFT_CONNER_DEFAULT);
