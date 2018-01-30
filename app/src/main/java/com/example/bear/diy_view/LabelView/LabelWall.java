@@ -1,4 +1,4 @@
-package com.example.bear.diy_view;
+package com.example.bear.diy_view.LabelView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,12 +6,11 @@ import android.database.DataSetObservable;
 import android.database.DataSetObserver;
 import android.support.annotation.Px;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.bear.diy_view.R;
 
 import java.util.ArrayList;
 

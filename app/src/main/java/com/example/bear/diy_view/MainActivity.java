@@ -1,73 +1,53 @@
 package com.example.bear.diy_view;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+
+import com.example.bear.diy_view.GlideBitmapTransformation.GlideTransformationActivity;
 
 import java.util.ArrayList;
-
-import static android.R.attr.label;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    private LabelWall mWall;
-    private ArrayList<String> mLabels;
+    final String KEY_1 = "KEY_1";
+    final String KEY_2 = "KEY_2";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mWall = (LabelWall) findViewById(R.id.wall);
-        mLabels = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            mLabels.add("小袋鼠嘤嘤嘤" + i);
-        }
-    }
+        ListView listView = (ListView) findViewById(R.id.listView);
 
-    public void onClick(View view) {
-        mWall.setAdapter(new MyAdatper(mLabels));
-        mWall.addOnLabelClickListener(new LabelWall.OnLabelClickListener() {
+        ArrayList<Map<String, Object>> data = new ArrayList<>();
+
+        //第一个示例：GlideTransformation
+        HashMap<String, Object> item1 = new HashMap<>();
+        item1.put(KEY_1, "GlideTransformation");
+        item1.put(KEY_2, GlideTransformationActivity.class);
+        data.add(item1);
+
+        listView.setAdapter(new SimpleAdapter(
+                this,
+                data,
+                android.R.layout.simple_list_item_1,
+                new String[]{KEY_1},
+                new int[]{android.R.id.text1})
+        );
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onLabelClick(LabelWall labelWall, View v, int position, int id) {
-                labelWall.getAdapter().getData().remove(position);
-                labelWall.getAdapter().notifyDataSetChanged();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String, Object> item = (Map<String, Object>) parent.getItemAtPosition(position);
+                startActivity(new Intent(MainActivity.this, (Class<?>) item.get(KEY_2)));
             }
         });
     }
-
-    static class MyAdatper extends LabelWall.LabelAdapter<String> {
-        public MyAdatper(ArrayList<String> data) {
-            super(data);
-        }
-
-        @Override
-        public View getView(LabelWall parent, View convertView, int position) {
-            ViewHolder holder;
-            if (convertView == null) {
-                convertView = View.inflate(parent.getContext(), R.layout.item_label, null);
-                holder = new ViewHolder(convertView);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-            holder.tv.setText(mData.get(position));
-            return convertView;
-        }
-
-        static class ViewHolder {
-            TextView tv;
-
-            public ViewHolder(View view) {
-                tv = (TextView) view.findViewById(R.id.tv);
-            }
-        }
-
-    }
-
 }

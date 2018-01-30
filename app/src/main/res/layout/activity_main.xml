@@ -4,37 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="add"
-        android:textSize="20sp"/>
-
-    <android.support.v4.widget.NestedScrollView
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-        android:paddingLeft="50dp"
-        android:paddingRight="100dp">
-
-        <com.example.bear.diy_view.LabelWall
-            android:id="@+id/wall"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:minHeight="200dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="20dp"
-            bear:emptyMsgOnLeftConner="false"
-            android:paddingTop="50dp"
-            bear:emptyMsgText="请添加金额"
-            bear:emptyMsgTextColor="@android:color/white"
-            bear:emptyMsgTextSize="20sp"
-            bear:labelHorizontalSpace="1dp"
-            bear:labelVerticalSpace="1dp"/>
-
-    </android.support.v4.widget.NestedScrollView>
+        android:layout_height="match_parent"/>
 </LinearLayout>
