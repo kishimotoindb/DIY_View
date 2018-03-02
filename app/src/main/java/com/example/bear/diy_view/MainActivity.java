@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.example.bear.diy_view.GlideBitmapTransformation.GlideTransformationActivity;
+import com.example.bear.diy_view.LayoutProcedure.RequestLayoutActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         item1.put(KEY_1, "GlideTransformation");
         item1.put(KEY_2, GlideTransformationActivity.class);
         data.add(item1);
+
+        //第二个示例：RequestLayout是否出发Draw流程
+        HashMap<String, Object> item2 = new HashMap<>();
+        item1.put(KEY_1, "RequestLayout是否出发Draw流程");
+        item1.put(KEY_2, RequestLayoutActivity.class);
+        data.add(item2);
 
         listView.setAdapter(new SimpleAdapter(
                 this,

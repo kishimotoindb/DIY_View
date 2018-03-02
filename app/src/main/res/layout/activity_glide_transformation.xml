@@ -17,11 +17,10 @@
 
 
     <ImageView
-        android:scaleType="center"
         android:id="@+id/ivImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@color/colorPrimary"/>
+        android:scaleType="center"/>
 
 
 </LinearLayout>
