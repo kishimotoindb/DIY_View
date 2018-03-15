@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".LayoutProcedure.RequestLayoutActivity">
         </activity>
+        <activity android:name="._36ke.PullToRefreshListActivity">
+        </activity>
     </application>
 
 </manifest>
